@@ -8,38 +8,48 @@ package ec.edu.ups.principal;
 import ec.edu.ups.controladores.ControladorEscritura;
 import ec.edu.ups.controladores.ControladorLectura;
 import java.io.File;
+import java.util.ArrayList;
 
 /**
  *
  * @author tians
  */
 public class Principal {
+
     public static void main(String[] args) {
-        ControladorLectura controladorLectura=new ControladorLectura();
-        ControladorEscritura controladorEscritura=new ControladorEscritura();
-        
+        ArrayList<ArrayList> listas = new ArrayList<>();
+
+        ControladorLectura controladorLectura = new ControladorLectura();
+        ControladorEscritura controladorEscritura = new ControladorEscritura();
+
         controladorEscritura.setRuta("archivo1.txt");
         controladorEscritura.Escribir("Hola Mundo");
         controladorEscritura.nuevaLinea();
         controladorEscritura.Escribir("Chao Mundo");
         controladorEscritura.close();
-        
-        controladorEscritura= new ControladorEscritura();
-        
+
+        controladorEscritura = new ControladorEscritura();
+
         controladorEscritura.setRuta("archivo2.txt");
-        controladorEscritura.Escribir("Hola Mundo");
+        controladorEscritura.Escribir("holo Mundo");
         controladorEscritura.nuevaLinea();
-        controladorEscritura.Escribir("Chao gil");
+        controladorEscritura.Escribir("choo golaso de manguera alv");
         controladorEscritura.close();
-            
-        int anterior;
-        File ruta=new File("C:\\Users\\tians\\Documents\\NetBeansProjects\\ManejoArchivosTexto\\src\\ec\\edu\\ups\\archivos");
-        for (File archivo : ruta.listFiles()){
-            
+
+        File ruta = new File("D:\\Programas NetBeans\\ManejoArchivosTexto\\src\\ec\\edu\\ups\\archivos");
+        for (File archivo : ruta.listFiles()) {
+            controladorLectura = new ControladorLectura();
+            controladorLectura.setRuta(archivo.getName());
+            controladorLectura.leer();
+            listas.add(controladorLectura.palabrasRepetidas());
         }
-         controladorLectura.setRuta("archivo1.txt");
-         controladorLectura.leer();
-         controladorLectura.palabrasRepetidas();
-        
+
+        for (ArrayList lista : listas) {
+            for (ArrayList lista2 : listas) {
+                for (int i = 0; i < lista.size(); i++) {
+                    
+                }
+            }
+        }
     }
 }

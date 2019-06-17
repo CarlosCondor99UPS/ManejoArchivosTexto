@@ -9,8 +9,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
 
 /**
  *
@@ -20,10 +19,10 @@ public class ControladorLectura {
 
     private String ruta;
     private String texto;
-    private Set<String> palabras;
+    private ArrayList<String> palabras;
 
     public ControladorLectura() {
-        palabras = new HashSet<>();
+        palabras = new ArrayList<>();
     }
 
     public ControladorLectura(String ruta, String texto) {
@@ -66,22 +65,25 @@ public class ControladorLectura {
         }      
     }
     
-    public void palabrasRepetidas(){
-        int anterior=0,cont=0;
+    public ArrayList palabrasRepetidas(){
+        int anterior=0;
         String palabra;
         for (int i=0;i<texto.length();i++){
-            if (String.valueOf(texto.charAt(i)).equals(" ")){
+            if (String.valueOf(texto.charAt(i)).equals(" ") || String.valueOf(texto.charAt(i)).equals("\n")){
                 palabra=texto.substring(anterior,i).trim();
-                System.out.println(palabra);
                 anterior=i;
-                cont++;
+                if (!palabra.contains("null")){
+                    palabras.add(palabra);
+                }
             }else if (i==texto.length()-1){
-                palabra=texto.substring(anterior,i).trim();
-                System.out.println(palabra);
+                palabra=texto.substring(anterior,i-4).trim();
                 anterior=i;
-                cont++;
+                if (!palabra.contains("null")){
+                    palabras.add(palabra);
+                }
+                
             }
         }
-        
+        return palabras;
     }
 }
